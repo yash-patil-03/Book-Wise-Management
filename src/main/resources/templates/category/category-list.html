@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 32px;
+        }
+        .card {
+        	margin-top: -30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 24px;
+        }
+        .centered {
+            text-align: center;
+            margin: 16px 0;
+            margin-bottom: -15px;
+        }
+        .message {
+            font-size: 19px;
+            color: #dc3545;
+        }
+        .scrollable {
+    		max-height: 400px;
+    		overflow-y: auto;
+    		padding-right: 10px;
+    		scrollbar-width: thin;
+    		scrollbar-color: #001f3f #f0f2f5;
+		}
+		.table td, .table th {
+    		padding-right: 20px;
+		}
+		.scrollable::-webkit-scrollbar {
+   			 width: 8px;
+		}
+		.scrollable::-webkit-scrollbar-thumb {
+    		background-color: #001f3f;
+    		border-radius: 10px;
+		}
+		.scrollable::-webkit-scrollbar-track {
+    		background-color: #f0f2f5;
+		}
+		.scrollable::-webkit-scrollbar-thumb:hover {
+    		background-color: #001a33;
+		}
+        .table {
+            width: 90%;
+            margin: 0 auto 16px auto;
+            background-color: #fff;
+        }
+        .centered-text {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .id-col {
+            width: 70px;
+        }
+        .category-col {
+            width: 160px;
+        }
+        .action-col {
+            width: 150px;
+        }
+        .description-col {
+            text-align: justify;
+        }
+        .button {
+            background-color: #001f3f;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .button:hover {
+            background-color: #001a33;
+        }
+        .button.back {
+            background-color: #ff7f00;
+        }
+        .button.back:hover {
+            background-color: #e67300;
+        }
+        .table-title {
+            margin: 8px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{top}"></div>
+    <div class="container">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <div class="centered" th:if="${clist.empty}">
+                    <label class="message">No category is added yet</label>
+                </div>
+                <div class="scrollable" th:if="${!clist.empty}">
+                 <div class='table-title'>Categorys</div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="centered-text id-col">Cat Id</th>
+                                <th class="centered-text category-col">Category</th>
+                                <th class="centered-text">Description</th>
+                                <th class="centered-text action-col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cat:${clist}">
+                                <td class="centered-text id-col" th:text="${cat.catid}"></td>
+                                <td class="centered-text" th:text="${cat.category}"></td>
+                                <td class="centered-text description-col" th:text="${cat.description}"></td>
+                                <td class="centered-text action-col">
+                                    <a th:href="@{edit(cid=${cat.catid})}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a th:href="@{remove(cid=${cat.catid})}" onclick="return confirm('Are you sure to remove?')" class="btn btn-danger btn-sm">Remove</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="centered">
+            <a class="button" href="add">Add New Category</a>
+            <a class="button back" href="../home">Back</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

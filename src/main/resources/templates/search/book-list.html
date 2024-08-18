@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 32px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 24px;
+        }
+        .title {
+            text-align: center;
+            margin: 16px 0;
+        }
+        .message {
+            font-size: 19.2px;
+            color: #dc3545;
+        }
+        .scrollable {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .scrollable {
+    		max-height: 400px;
+    		overflow-y: auto;
+    		padding-right: 10px;
+    		scrollbar-width: thin;
+    		scrollbar-color: #001f3f #f0f2f5;
+		}
+		.table td, .table th {
+    		padding-right: 20px;
+		}
+		.scrollable::-webkit-scrollbar {
+   			 width: 8px;
+		}
+		.scrollable::-webkit-scrollbar-thumb {
+    		background-color: #001f3f;
+    		border-radius: 10px;
+		}
+		.scrollable::-webkit-scrollbar-track {
+    		background-color: #f0f2f5;
+		}
+		.scrollable::-webkit-scrollbar-thumb:hover {
+    		background-color: #001a33;
+		}
+        .table {
+            width: 100%;
+            margin-bottom: 16px;
+        }
+        .center {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-link {
+            background-color: #001f3f;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .btn-link:hover {
+            background-color: #001a33;
+        }
+        .btn-back {
+            background-color: #ff7f00;
+        }
+        .btn-back:hover {
+            background-color: #e67300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card mx-auto col-md-12">
+            <div class="card-body">
+                <div class="title">
+                    <label th:text="${'Book list by ' + by}"></label>
+                </div>
+                <div th:if="${blist.empty}" class="message">
+                    There are no books in the store.
+                </div>
+                <div th:if="${!blist.empty}" class="scrollable">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="centers">Book</th>
+                                <th class="center" style="width: 200px;">Title</th>
+                                <th class="center" style="width: 130px;">Author</th>
+                                <th class="center">CId</th>
+                                <th class="center">PId</th>
+                                <th class="center" style="width: 45px;">Copies</th>
+                                <th class="center">Price</th>
+                                <th class="center" style="width: 130px;">Stock</th>
+                                <th class="center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="book : ${blist}">
+                                <td class="center" th:text="${book.bookid}"></td>
+                                <td class="center" th:text="${book.title}"></td>
+                                <td class="center" th:text="${book.author}"></td>
+                                <td class="center" th:text="${book.catid}"></td>
+                                <td class="center" th:text="${book.pubid}"></td>
+                                <td class="center" th:text="${book.copies}"></td>
+                                <td class="center" th:text="${'₹' + book.price}"></td>
+                                <td class="center" th:if="${book.copies > 0}" style="color:green">In Stock</td>
+                                <td class="center" th:if="${book.copies == 0}" style="color:red">Out of Stock</td>
+                                <td class="center">
+    							<a th:href="@{/bookwise/book/edit(bid=${book.bookid})}" class="btn btn-primary btn-sm">Edit</a> 
+    							<a th:href="@{/bookwise/book/remove(bid=${book.bookid})}" onclick="return confirm('Are you sure to remove?')" class="btn btn-danger btn-sm">Remove</a>
+								</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+                    <a class="btn-link btn-back" href="/bookwise/book/search">Back</a>
+                </div>
+</body>
+</html>

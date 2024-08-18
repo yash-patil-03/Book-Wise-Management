@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Publisher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            padding: 32px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn-primary {
+            background-color: #001f3f;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #001a33;
+        }
+        .btn-secondary {
+            background-color: #ff7f00;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background-color: #e67300;
+        }
+        .card-body {
+            padding: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card mx-auto col-md-8">
+            <form action="save" method="post">
+                <div class="form-group">
+                    <label for="publisher">Enter Publisher Name</label>
+                    <input type="text" id="publisher" name="publisher" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Enter Phone Number</label>
+                    <input type="text" id="phone" name="phone" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Enter Email ID</label>
+                    <input type="email" id="email" name="email" class="form-control" required/>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Insert Publisher</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

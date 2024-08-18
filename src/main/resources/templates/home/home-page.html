@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #001f3f;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 18px;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #d3d3d3;
+        }
+        .container {
+            padding: 32px;
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .links a {
+            display: block;
+            padding: 12px 24px;
+            background-color: #001f3f;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .links a:hover {
+            background-color: #001a33;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .title {
+            color: #001f3f;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        hr {
+            border: 2px solid #001f3f;
+            margin: 32px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Book Wise Management</a>
+    </nav>
+    <div class="container">
+        <div class="title">Welcome to the Dashboard</div>
+        <div class="links">
+            <a href="book/dashboard">Book Dashboard</a>
+            <a href="category/dashboard">Category Dashboard</a>
+            <a href="publisher/dashboard">Publisher Dashboard</a>
+            <a href="book/search">Search Books</a>
+        </div>
+        <hr>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

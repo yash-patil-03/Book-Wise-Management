@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            padding: 32px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 72px;
+        }
+        .btn-primary {
+            background-color: #001f3f;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #001a33;
+        }
+        .btn-secondary {
+            background-color: #ff7f00;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background-color: #e67300;
+        }
+        .card-body {
+            padding: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card mx-auto col-md-8">
+            <form action="update" method="post">
+                <div class="form-group">
+                    <label for="catid">Category Id</label>
+                    <input type="hidden" name="catid" th:value="${cat.catid}" required/>
+                    <p class="form-control-plaintext" th:text="${cat.catid}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="category">Edit Category</label>
+                    <input type="text" id="category" name="category" class="form-control" th:value="${cat.category}" required/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Edit Description</label>
+                    <textarea id="description" name="description" class="form-control" th:text="${cat.description}" style="height: 120px" required></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Update Category</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

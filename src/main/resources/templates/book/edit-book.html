@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 2rem;
+        }
+        .card {
+        	margin-top: -30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .form-control {
+            border-radius: 4px;
+            box-shadow: none;
+        }
+        #bid {
+            background-color: #fff;
+        }
+        .btr {
+            background-color: #001f3f;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btr:hover {
+            background-color: #001a33;
+        }
+        .btr.cancel {
+            background-color: #ff7f00;
+        }
+        .btr.cancel:hover {
+            background-color: #e67300;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{top}"></div>
+    <div class="container">
+        <div class="card mx-auto col-md-10">
+            <div class="card-body">
+                <form action="update" method="post">
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <label for="bid">Book ID</label>
+                            <input type="text" readonly id="bid" name="bookid" th:value="${book.bookid}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label for="title">Edit Book Title</label>
+                            <input type="text" name="title" id="title" th:value="${book.title}" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="author">Edit Author Name</label>
+                            <input type="text" name="author" id="author" th:value="${book.author}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label for="category">Edit Category</label>
+                            <select name="catid" id="category" class="form-control" required>
+                                <option th:each="cat:${clist}" th:value="${cat.catid}" th:text="${cat.category}" th:selected="${book.catid == cat.catid}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="publisher">Edit Publisher</label>
+                            <select name="pubid" id="publisher" class="form-control" required>
+                                <option th:each="pub:${plist}" th:value="${pub.pubid}" th:text="${pub.publisher}" th:selected="${book.pubid == pub.pubid}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label for="copies">Edit Number of Copies</label>
+                            <input type="number" name="copies" id="copies" th:value="${book.copies}" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price">Edit Price</label>
+                            <input type="text" name="price" id="price" th:value="${book.price}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-10">
+                            <button type="submit" class="btr">Update Record</button>
+                            <button type="button" class="btr cancel" onclick="history.back()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

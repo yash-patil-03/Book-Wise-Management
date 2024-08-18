@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 16px;
+            max-width: 800px;
+        }
+        .form-control {
+            border-radius: 4px;
+            box-shadow: none;
+            padding: 4px 8px;
+            font-size: 14px;
+        }
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .form-group span {
+            color: #dc3545;
+            margin-left: 5px;
+        }
+        .btr {
+            background-color: #001f3f;
+            color: #fff;
+            border: none;
+            padding: 7px 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btr:hover {
+            background-color: #001a33;
+        }
+        .btr.cancel {
+            background-color: #ff7f00;
+        }
+        .btr.cancel:hover {
+            background-color: #e67300;
+        }
+        .search-table {
+        	margin-top: -30px;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+        .search-table td {
+            padding: 0;
+            vertical-align: middle;
+        }
+        .search-table .label-cell {
+            width: 30%;
+        }
+        .search-table .input-cell {
+            width: 50%;
+        }
+        .search-table .button-cell {
+            width: 20%;
+        }
+        .back-button {
+            
+            text-align: center;
+            background-color: #ff7f00;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-button:hover {
+            background-color: #e67300;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{top}"></div>
+    <div class="container">
+        <table class="search-table">
+            <tr>
+                <td>
+                    <form action="search/byid" method="get">
+                        <table class="table">
+                            <tr>
+                                <td class="label-cell">Search by book id</td>
+                                <td class="input-cell"><input type="text" name="bookid" class="form-control" placeholder="Enter book ID" required></td>
+                                <td class="button-cell"><button type="submit" class="btr">Go</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="search/byauthor" method="get">
+                        <table class="table">
+                            <tr>
+                                <td class="label-cell">Search by author</td>
+                                <td class="input-cell"><input type="text" name="author" class="form-control" placeholder="Enter author name" required></td>
+                                <td class="button-cell"><button type="submit" class="btr">Go</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="search/bytitle" method="get">
+                        <table class="table">
+                            <tr>
+                                <td class="label-cell">Search by title</td>
+                                <td class="input-cell"><input type="text" name="title" class="form-control" placeholder="Enter book title" required></td>
+                                <td class="button-cell"><button type="submit" class="btr">Go</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="search/bycategory" method="get">
+                        <table class="table">
+                            <tr>
+                                <td class="label-cell">Search by category</td>
+                                <td class="input-cell">
+                                    <select name="catid" class="form-control" required>
+                                        <option value="" disabled selected>Select a category</option>
+                                        <option th:each="cat : ${clist}" 
+                                                th:text="${cat.category}" 
+                                                th:value="${cat.catid}" 
+                                                th:selected="${cat.catid == defaultCategoryId}"></option>
+                                    </select>
+                                </td>
+                                <td class="button-cell"><button type="submit" class="btr">Go</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="search/bypublisher" method="get">
+                        <table class="table">
+                            <tr>
+                                <td class="label-cell">Search by publisher</td>
+                                <td class="input-cell">
+                                    <select name="pubid" class="form-control" required>
+                                        <option value="" disabled selected>Select a publisher</option>
+                                        <option th:each="pub : ${plist}" 
+                                                th:text="${pub.publisher}" 
+                                                th:value="${pub.pubid}" 
+                                                th:selected="${pub.pubid == defaultPublisherId}"></option>
+                                    </select>
+                                </td>
+                                <td class="button-cell"><button type="submit" class="btr">Go</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <a class="back-button" href="../home">Back</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
