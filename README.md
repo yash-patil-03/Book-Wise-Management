@@ -26,3 +26,21 @@ With **Book Wise Management**, sellers can:
 - **Database**: MySQL
 - **Tool**: Spring Tool Suite (STS)
 - **IDE**: Eclipse
+
+## Step to Run
+### Step 1: Clone the repository from GitHub
+
+```bash
+git clone https://github.com/yash-patil-03/Book-Wise-Management/blob/main/README.md
+cd BookWiseManagement
+```
+
+### Step 2: Set up the MySQL database
+- Create a new database in MySQL.
+- Update the database configuration in application.properties.
+
+### Step 3: Run the project
+- Right-click on the project in Eclipse and select Run As -> Spring Boot App.
+
+### Step 4: Access the application in your browser
+- Open http://localhost:8086/bookwise in your browser.
