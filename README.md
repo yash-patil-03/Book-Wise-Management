@@ -31,7 +31,7 @@ With **Book Wise Management**, sellers can:
 ### Step 1: Clone the repository from GitHub
 
 ```bash
-git clone https://github.com/yash-patil-03/Book-Wise-Management/blob/main/README.md
+git clone https://github.com/yash-patil-03/Book-Wise-Management.git
 cd BookWiseManagement
 ```
 
